@@ -1,6 +1,6 @@
 cs171-apts-morrison-john
 ========================
 
-The Art of Apartment Hunting
+Off Campus Housing 2013-2014
 
 Boston, New York, Los Angeles, San Francisco, Dallas, Seattle.

@@ -1,4 +1,4 @@
-#target photoshop;
+﻿#target photoshop;
 var data =
 #include "./cities.json";
 
@@ -12,7 +12,15 @@ var rectSize = 3;
 var maxLat, maxLon, minLat, minLon, maxX, maxY, deltaLat, deltaLon, fileData, arrayXY, offset,file ;
 
 
-run(0);
+run(20140410);
+run(20140411);
+run(20140412);
+run(20140413);
+run(20140414);
+run(20140415);
+run(20140416);
+run(20140417);
+
 
 
 

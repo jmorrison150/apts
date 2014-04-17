@@ -1,0 +1,275 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Off Campus Housing 2013-2014</title>
+    <style>
+      html, body, .map {
+        width: 80%; height: 80%;
+        min-width:600px; min-height:300px;
+        float:left;
+        margin: 0px;
+        padding: 0px
+      }
+      .streetView{
+        width: 49%; 
+        height: 30%; 
+        min-width: 300px;
+        min-height:150px;
+        float:left
+      }
+      h2{
+
+        clear:both;
+      }
+
+    </style>
+    <!--         -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+
+    <script>
+
+
+        function initialize() {
+
+    var styles = [{ "featureType": "road", "stylers": [{ "lightness": 45 }, { "visibility": "simplified" }, { "saturation": -100 }, { "weight": 0.2 }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "saturation": -100 }, { "weight": 2 }, { "lightness": -5 }, { "gamma": 1.64 }] }, { "featureType": "landscape.man_made", "stylers": [{ "saturation": -100 }, { "lightness": 100 }] }, { "featureType": "landscape.natural", "stylers": [{ "lightness": 88 }] }, { "featureType": "poi", "stylers": [{ "lightness": 90 }] }, { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "visibility": "simplified" }, { "saturation": -100 }, { "lightness": -90 }, { "weight": 0.7 }] }, { "featureType": "water", "elementType": "labels.text", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "administrative.locality", "elementType": "labels", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, {}];
+
+
+
+
+    //center map
+    var boston = new google.maps.LatLng(42.357402, -71.083102);
+    var ny = new google.maps.LatLng(40.737893, -73.990288);
+    var sf = new google.maps.LatLng(37.599, -122.206879);
+    var la = new google.maps.LatLng(33.935385, -118.320236);
+    var sea = new google.maps.LatLng(47.608015, -122.322865);
+    var dfw = new google.maps.LatLng(32.765336, -97.049332);
+
+
+    //set bounds for overlay
+    var bostonBounds = new google.maps.LatLngBounds(new google.maps.LatLng(42.255594, -71.1828231), new google.maps.LatLng(42.4351936, -70.9758));
+    var nyBounds = new google.maps.LatLngBounds(new google.maps.LatLng(40.616333, -74.113083), new google.maps.LatLng(40.856704, -73.850784));
+    var sfBounds = new google.maps.LatLngBounds(new google.maps.LatLng(37.249862, -122.796936), new google.maps.LatLng(38.083915, -121.764221));
+    var laBounds = new google.maps.LatLngBounds(new google.maps.LatLng(33.718134, -118.557587), new google.maps.LatLng(34.130639, -117.964325));
+    var seaBounds = new google.maps.LatLngBounds(new google.maps.LatLng(47.242477, -122.46048), new google.maps.LatLng(47.868981, -121.853485));
+    var dfwBounds = new google.maps.LatLngBounds(new google.maps.LatLng(32.450834, -97.533875), new google.maps.LatLng(32.97311, -96.39679));
+
+
+
+    //setup streetview
+    var sv = new google.maps.StreetViewService();
+
+    var bostonPanorama;
+    var nyPanorama;
+    var sfPanorama;
+    var laPanorama;
+    var seaPanorama;
+    var dfwPanorama;
+
+
+
+
+
+  // Set up the map
+    var bostonSettings = {
+        mapTypeControlOptions: { mapTypeIds: ['Styled'] },
+        center: boston, zoom: 11, streetViewControl: false,
+        disableDefaultUI: true,
+        mapTypeId: 'Styled'
+    };
+    var nySettings = {
+        mapTypeControlOptions: { mapTypeIds: ['Styled'] },
+        center: ny, zoom: 11, streetViewControl: false,
+        disableDefaultUI: true,
+        mapTypeId: 'Styled'
+    };
+    var sfSettings = {
+        mapTypeControlOptions: { mapTypeIds: ['Styled'] },
+        center: sf, zoom: 9, streetViewControl: false,
+        disableDefaultUI: true,
+        mapTypeId: 'Styled'
+    };
+    var laSettings = {
+        mapTypeControlOptions: { mapTypeIds: ['Styled'] },
+        center: la, zoom: 10, streetViewControl: false,
+        disableDefaultUI: true,
+        mapTypeId: 'Styled'
+    };
+    var seaSettings = {
+        mapTypeControlOptions: { mapTypeIds: ['Styled'] },
+        center: sea, zoom: 9, streetViewControl: false,
+        disableDefaultUI: true,
+        mapTypeId: 'Styled'
+    };
+    var dfwSettings = {
+        mapTypeControlOptions: { mapTypeIds: ['Styled'] },
+        center: dfw, zoom: 9, streetViewControl: false,
+        disableDefaultUI: true,
+        mapTypeId: 'Styled'
+    };
+
+
+    //make the map
+  bostonGoogleMap = new google.maps.Map(document.getElementById('boston-Map'),      bostonSettings);
+      nyGoogleMap = new google.maps.Map(document.getElementById('ny-Map'),      nySettings);
+      sfGoogleMap = new google.maps.Map(document.getElementById('sf-Map'),      sfSettings);
+      laGoogleMap = new google.maps.Map(document.getElementById('la-Map'),      laSettings);
+     seaGoogleMap = new google.maps.Map(document.getElementById('sea-Map'),      seaSettings);
+     dfwGoogleMap = new google.maps.Map(document.getElementById('dfw-Map'),      dfwSettings);
+
+
+
+
+    //styles
+     var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+
+     bostonGoogleMap.mapTypes.set('Styled', styledMapType);
+     nyGoogleMap.mapTypes.set('Styled', styledMapType);
+     sfGoogleMap.mapTypes.set('Styled', styledMapType);
+     laGoogleMap.mapTypes.set('Styled', styledMapType);
+     seaGoogleMap.mapTypes.set('Styled', styledMapType);
+     dfwGoogleMap.mapTypes.set('Styled', styledMapType);
+
+
+
+
+
+
+    //make overlay
+     bostonOverlay = new google.maps.GroundOverlay('./images/apt-BOS-20140313.png', bostonBounds);
+     nyOverlay = new google.maps.GroundOverlay('./images/apt-NY-20140313.png', nyBounds);
+     sfOverlay = new google.maps.GroundOverlay('./images/apt-SF-20140313.png', sfBounds);
+     laOverlay = new google.maps.GroundOverlay('./images/apt-LA-20140313.png', laBounds);
+     seaOverlay = new google.maps.GroundOverlay('./images/apt-SEA-20140313.png', seaBounds);
+     dfwOverlay = new google.maps.GroundOverlay('./images/apt-DFW-20140313.png', dfwBounds);
+
+     bostonOverlay.setMap(bostonGoogleMap);
+     nyOverlay.setMap(nyGoogleMap);
+     sfOverlay.setMap(sfGoogleMap);
+     laOverlay.setMap(laGoogleMap);
+     seaOverlay.setMap(seaGoogleMap);
+     dfwOverlay.setMap(dfwGoogleMap);
+
+
+
+
+
+            //click to view details
+     var panoramaOptions = {         disableDefaultUI: true     };
+
+
+  //pano
+     bostonPanorama = new google.maps.StreetViewPanorama(document.getElementById('boston-Street'), panoramaOptions);
+     nyPanorama = new google.maps.StreetViewPanorama(document.getElementById('ny-Street'), panoramaOptions);
+     sfPanorama = new google.maps.StreetViewPanorama(document.getElementById('sf-Street'), panoramaOptions);
+     laPanorama = new google.maps.StreetViewPanorama(document.getElementById('la-Street'), panoramaOptions);
+     seaPanorama = new google.maps.StreetViewPanorama(document.getElementById('sea-Street'), panoramaOptions);
+     dfwPanorama = new google.maps.StreetViewPanorama(document.getElementById('dfw-Street'), panoramaOptions);
+
+  // getPanoramaByLocation will return the nearest pano when the
+  // given radius is 50 meters or less.
+  google.maps.event.addListener(bostonGoogleMap, 'click', function(event) {      sv.getPanoramaByLocation(event.latLng, 50, bostonProcessSVData);  });
+  google.maps.event.addListener(nyGoogleMap,     'click', function(event) {      sv.getPanoramaByLocation(event.latLng, 50, nyProcessSVData);  });
+  google.maps.event.addListener(sfGoogleMap,     'click', function(event) {      sv.getPanoramaByLocation(event.latLng, 50, sfProcessSVData);  });
+  google.maps.event.addListener(laGoogleMap,     'click', function(event) {      sv.getPanoramaByLocation(event.latLng, 50, laProcessSVData);  });
+  google.maps.event.addListener(seaGoogleMap,    'click', function(event) {      sv.getPanoramaByLocation(event.latLng, 50, seaProcessSVData);  });
+  google.maps.event.addListener(dfwGoogleMap,    'click', function(event) {      sv.getPanoramaByLocation(event.latLng, 50, dfwProcessSVData);  });
+}
+
+function bostonProcessSVData(data, status) {
+  if (status == google.maps.StreetViewStatus.OK) {
+    bostonPanorama.setPano(data.location.pano);
+    bostonPanorama.setPov({
+      heading: 270,
+      pitch: 0,
+      disableDefaultUI: true
+    });
+    bostonPanorama.setVisible(true);
+  } else {        console.log('Street View data not found for this location.');  }
+}
+function nyProcessSVData(data, status) {
+  if (status == google.maps.StreetViewStatus.OK) {
+    nyPanorama.setPano(data.location.pano);
+    nyPanorama.setPov({
+      heading: 270,
+      pitch: 0
+    });
+    nyPanorama.setVisible(true);
+  } else {        console.log('Street View data not found for this location.');  }
+}
+function sfProcessSVData(data, status) {
+  if (status == google.maps.StreetViewStatus.OK) {
+    sfPanorama.setPano(data.location.pano);
+    sfPanorama.setPov({
+      heading: 270,
+      pitch: 0
+    });
+    sfPanorama.setVisible(true);
+  } else {        console.log('Street View data not found for this location.');  }
+}
+function laProcessSVData(data, status) {
+  if (status == google.maps.StreetViewStatus.OK) {
+    laPanorama.setPano(data.location.pano);
+    laPanorama.setPov({
+      heading: 270,
+      pitch: 0
+    });
+    laPanorama.setVisible(true);
+  } else {        console.log('Street View data not found for this location.');  }
+}
+function seaProcessSVData(data, status) {
+  if (status == google.maps.StreetViewStatus.OK) {
+    seaPanorama.setPano(data.location.pano);
+    seaPanorama.setPov({
+      heading: 270,
+      pitch: 0
+    });
+    seaPanorama.setVisible(true);
+  } else {        console.log('Street View data not found for this location.');  }
+}
+function dfwProcessSVData(data, status) {
+  if (status == google.maps.StreetViewStatus.OK) {
+    dfwPanorama.setPano(data.location.pano);
+    dfwPanorama.setPov({
+      heading: 270,
+      pitch: 0
+    });
+    dfwPanorama.setVisible(true);
+  } else {        console.log('Street View data not found for this location.');  }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+  <H2>Boston</H2>
+    <div id="boston-Map" class="map" ></div>
+    <!--   <div id="boston-Street" class="streetView" ></div>   -->
+    <div id="boston-Graph" class ="graph"></div>
+  <H2> New York</H2>
+    <div id="ny-Map" class="map" ></div>
+    <!--   <div id="ny-Street"  class="streetView"  ></div>  -->
+    <div id="ny-Graph" class ="graph"></div>
+  <H2>San Francisco</H2>
+    <div id="sf-Map" class="map" ></div>
+    <!--   <div id="sf-Street"  class="streetView" ></div>  -->
+    <div id="sf-Graph" class ="graph"></div>
+  <H2>Los Angeles</H2>
+    <div id="la-Map" class="map" ></div>
+    <!--   <div id="la-Street"  class="streetView" ></div>  -->
+    <div id="la-Graph" class ="graph"></div>
+  <H2>Seattle</H2>
+    <div id="sea-Map" class="map" ></div>
+    <!--   <div id="sea-Street" class="streetView"  ></div> -->
+    <div id="sea-Graph" class ="graph"></div>
+  <H2>Dallas-Fort Worth</H2>
+    <div id="dfw-Map" class="map" ></div>
+    <!--   <div id="dfw-Street"   class="streetView" ></div> -->
+    <div id="dfw-Graph" class ="graph"></div>
+  </body>
+</html>
+
