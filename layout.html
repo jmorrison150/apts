@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Off Campus Housing 2013-2014</title>
+    <style>       
+        body {
+    background:#000;
+                }
+        img {
+            position:absolute;
+        }
+        .layout {
+        visibility:hidden;
+        }
+
+    </style>
+</head>
+<body>
+    <img id="layout_blk" width="1200" height="588" data-src="./images/layout/layout_blk.png" usemap="#layoutMap" src="./images/layout/layout_blk.png" alt="Apartment Data Visualization" style="opacity:1;" />
+    <map name="layoutMap">
+        <area id="sf_color" class="area" alt="SF" href="sf.html" shape="rect" coords="40,90,153,240" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'visible';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="sea_color" class="area" alt="SEA" href="sea.html" shape="rect" coords=" 260,87,361,240 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'visible';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="bos_color" class="area" alt="BOS" href="bos.html" shape="rect" coords="  434,74,552,240" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'visible';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="la_color" class="area" alt="LA" href="la.html" shape="rect" coords=" 45,310,186,500 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'visible';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="dfw_color" class="area" alt="DFW" href="dfw.html" shape="rect" coords=" 260,300,393,500 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'visible';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="ny_color" class="area" alt="NY" href="ny.html" shape="rect" coords=" 450,300,568,500 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'visible';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+
+
+
+
+
+        <area class="area" alt="SF" href="sf.html" shape="circle" coords="667,311,36" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'visible';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="SEA" href="sea.html" shape="circle" coords="663,193,36" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'visible';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="BOS" href="bos.html" shape="circle" coords="1147,250,36" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'visible';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="LA" href="la.html" shape="circle" coords="703,364,36" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'visible';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="DFW" href="dfw.html" shape="circle" coords="905,378,36" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'visible';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="NY" href="ny.html" shape="circle" coords="1117,287,36" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'visible';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="intro_area" class="area" alt="intro" href="intro.html" shape="rect" coords=" 993,477,1169,521 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'visible';
+    "/>
+    
+    
+    
+    
+    
+    
+    
+    </map>
+
+    <img id="sf_layout" class="layout" width="1200" height="588"   usemap="#layoutMap" src="./images/layout/sf_layout.png" />
+    <img id="sea_layout" class="layout" width="1200" height="588"  usemap="#layoutMap" src="./images/layout/sea_layout.png" />
+    <img id="la_layout" class="layout" width="1200" height="588"   usemap="#layoutMap" src="./images/layout/la_layout.png" />
+    <img id="dfw_layout" class="layout" width="1200" height="588"  usemap="#layoutMap" src="./images/layout/dfw_layout.png" />
+    <img id="bos_layout" class="layout" width="1200" height="588"  usemap="#layoutMap" src="./images/layout/bos_layout.png" />
+    <img id="ny_layout" class="layout" width="1200" height="588" usemap="#layoutMap" src="./images/layout/ny_layout.png" />
+    <img id="intro_layout" class="layout" width="1200" height="588" usemap="#layoutMap" src="./images/layout/intro_layout.png" />
+   
+    
+
+</body>
+
+</html>

@@ -1,4 +1,10 @@
-﻿#target photoshop;
+//John Morrison 2014
+//javascript port based on code by Jeff Kaufman 
+//Boston Apartment Prices 2011
+//http://www.jefftk.com/apartment_prices/index#2014-03-18&room
+
+
+#target photoshop;
 var data =
 #include "./cities.json";
 
@@ -276,11 +282,11 @@ function ramp( value ){
     var _limit = [ midpoint*0.2,midpoint*0.8,midpoint,midpoint*1.2,midpoint*1.8 ];
     var red, green, blue;
     
-//_limit[0]    200
-//_limit[1]    800
-//_limit[2]    1000
-//_limit[3]    1200
-//_limit[4]    1800
+//_limit[0]    200      260
+//_limit[1]    800      1040
+//_limit[2]    1000     1300
+//_limit[3]    1200     1560
+//_limit[4]    1800     2340
   
     color = {};
     color.red = map(value,_limit[2],_limit[3],0,255);

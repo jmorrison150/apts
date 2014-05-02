@@ -1,0 +1,396 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Apartment Price Per Bedroom</title>
+      <link href="./css/d3.slider.css" rel="stylesheet"/>
+      <link href="./css/style.css" rel="stylesheet" />
+
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+      <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+      <script type="text/javascript" src="./js/d3.slider.js"></script>
+      <script type="text/javascript" src="./js/mapStyles.js"></script>
+      <script type="text/javascript" src="./js/mapStyles_blk.js"></script>
+
+
+      <script>
+
+          var Panorama;
+          google.maps.event.addDomListener(window, 'load', initialize);
+          function initialize() {
+
+              insertMap();
+              insertScale();
+              insertSlider();
+              insertBarGraph();
+              //insertGraph();
+
+
+          }
+
+          function ProcessSVData(data, status) {
+              if (status == google.maps.StreetViewStatus.OK) {
+
+
+                  Panorama.setPano(data.location.pano);
+                  Panorama.setPov({
+                      heading: 270,
+                      pitch: 0
+                  });
+                  Panorama.setVisible(true);
+              } else { console.log('Street View data not found for this location.'); }
+          }
+
+          function insertMap() {
+
+
+              //center map
+              var ny = new google.maps.LatLng(40.737893, -73.990288);
+              var boston = new google.maps.LatLng(42.357402, -71.083102);
+              var sf = new google.maps.LatLng(37.599, -122.206879);
+              var la = new google.maps.LatLng(33.935385, -118.320236);
+              var sea = new google.maps.LatLng(47.608015, -122.322865);
+              var dfw = new google.maps.LatLng(32.765336, -97.049332);
+
+              //set bounds for overlay
+              var nyBounds = new google.maps.LatLngBounds(new google.maps.LatLng(40.616333, -74.113083), new google.maps.LatLng(40.856704, -73.850784));
+              var bostonBounds = new google.maps.LatLngBounds(new google.maps.LatLng(42.255594, -71.1828231), new google.maps.LatLng(42.4351936, -70.9758));
+              var sfBounds = new google.maps.LatLngBounds(new google.maps.LatLng(37.249862, -122.796936), new google.maps.LatLng(38.083915, -121.764221));
+              var laBounds = new google.maps.LatLngBounds(new google.maps.LatLng(33.718134, -118.557587), new google.maps.LatLng(34.130639, -117.964325));
+              var seaBounds = new google.maps.LatLngBounds(new google.maps.LatLng(47.242477, -122.46048), new google.maps.LatLng(47.868981, -121.853485));
+              var dfwBounds = new google.maps.LatLngBounds(new google.maps.LatLng(32.450834, -97.533875), new google.maps.LatLng(32.97311, -96.39679));
+
+
+              // Set up the map
+              var mapOptions = {
+                  center: ny,
+                  zoom: 11,
+                  streetViewControl: false,
+                  panControl: false,
+                  scaleControl: true,
+                  zoomControl: true,
+                  zoomControlOptions: { style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR, position: google.maps.ControlPosition.BOTTOM_RIGHT },
+                  mapTypeControl: true,
+                  mapTypeControlOptions: { style:google.maps.MapTypeControlStyle.DEFAULT, mapTypeIds: ['Light', 'Dark'], position: google.maps.ControlPosition.RIGHT_BOTTOM },
+                  mapTypeId: 'Dark'
+
+
+              };
+
+              //make the map
+              GoogleMap = new google.maps.Map(document.getElementById('ny-Map'), mapOptions);
+
+              //styles
+              var styledMapType = new google.maps.StyledMapType(styles, { name: 'Light' });
+              var styledMapType_blk = new google.maps.StyledMapType(styles_blk, { name: 'Dark' });
+              //var styledMapType_bos = new google.maps.StyledMapType(styles_blk, { name: 'Boston' });
+              //var styledMapType_dfw = new google.maps.StyledMapType(styles_blk, { name: 'Dallas' });
+              //var styledMapType_la = new google.maps.StyledMapType(styles_blk, { name: 'Los_Angeles' });
+              //var styledMapType_ny = new google.maps.StyledMapType(styles_blk, { name: 'New_York' });
+              //var styledMapType_sf = new google.maps.StyledMapType(styles_blk, { name: 'San_Francisco' });
+              //var styledMapType_sea = new google.maps.StyledMapType(styles_blk, { name: 'Seattle' });
+
+
+
+              GoogleMap.mapTypes.set('Light', styledMapType);
+              GoogleMap.mapTypes.set('Dark', styledMapType_blk);
+
+              //GoogleMap.mapTypes.set('Boston', styledMapType_bos);
+              //GoogleMap.mapTypes.set('Dallas', styledMapType_dfw);
+              //GoogleMap.mapTypes.set('Los_Angeles', styledMapType_la);
+              //GoogleMap.mapTypes.set('New_York', styledMapType_ny);
+              //GoogleMap.mapTypes.set('San_Francisco', styledMapType_sf);
+              //GoogleMap.mapTypes.set('Seattle', styledMapType_sea);
+
+
+
+
+
+
+
+
+
+              //       // add transit overlay
+              //var transitOptions = {
+              //    getTileUrl: function (coord, zoom) { return "http://mt1.google.com/vt/lyrs=m@155076273,transit:comp|vm:&" + "hl=en&opts=r&s=Galil&z=" + zoom + "&x=" + coord.x + "&y=" + coord.y; },
+              //    tileSize: new google.maps.Size(256, 256),
+              //    isPng: true
+              //};
+              //var transitMapType = new google.maps.ImageMapType(transitOptions);
+              //bostonGoogeMap.overlayMapTypes.insertAt(0, transitMapType);
+
+
+
+
+
+
+
+              //click to view details
+              var panoramaOptions = { disableDefaultUI: true };
+              //setup streetview
+
+
+
+              //pano
+              Panorama = new google.maps.StreetViewPanorama(document.getElementById('ny-Street'), panoramaOptions);
+
+              // getPanoramaByLocation will return the nearest pano when the
+              // given radius is 50 meters or less.
+              var sv = new google.maps.StreetViewService();
+
+
+              //make overlay
+              nyOverlay = new google.maps.GroundOverlay('./images/ny_all.png', nyBounds);
+              bostonOverlay = new google.maps.GroundOverlay('./images/bos_all.png', bostonBounds);
+              sfOverlay = new google.maps.GroundOverlay('./images/sf_all.png', sfBounds);
+              laOverlay = new google.maps.GroundOverlay('./images/la_all.png', laBounds);
+              seaOverlay = new google.maps.GroundOverlay('./images/sea_all.png', seaBounds);
+              dfwOverlay = new google.maps.GroundOverlay('./images/dfw_all.png', dfwBounds);
+
+              nyOverlay.setMap(GoogleMap);
+              bostonOverlay.setMap(GoogleMap);
+              sfOverlay.setMap(GoogleMap);
+              laOverlay.setMap(GoogleMap);
+              seaOverlay.setMap(GoogleMap);
+              dfwOverlay.setMap(GoogleMap);
+
+
+
+              google.maps.event.addListener(nyOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
+              google.maps.event.addListener(bostonOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
+              google.maps.event.addListener(sfOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
+              google.maps.event.addListener(laOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
+              google.maps.event.addListener(seaOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
+              google.maps.event.addListener(dfwOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
+
+
+          }
+
+          function insertScale() {
+              var scale = document.createElement("img");
+              scale.src = "./images/scale.png";
+              document.getElementById('ny-scale').appendChild(scale);
+          }
+
+          function insertSlider() {
+
+
+
+              d3.select('#slider3').call(
+                  d3.slider()
+                    .on("slide", function (evt, value) {
+                        d3.select('#slider3text').text(function () {
+                            var number = (Math.floor(value * 0.12));
+                            return d3.time.format("%B")(new Date(2014, number));
+                        });
+                    })
+                  );
+
+              //d3.slider().on("slide", function (evt, value) {
+              //    d3.select('#slider3text').text(value);
+              //});
+          }
+
+          function insertGraph() {
+
+              // Generate a log-normal distribution with a median of 30 minutes.
+              var values = d3.range(1000).map(d3.random.logNormal(Math.log(30), .4));
+
+
+
+              // Formatters for counts and times (converting numbers to Dates).
+              var formatCount = d3.format(",.0f"),
+                  //formateDate = d3.time.format("%Y.%m.%d"),
+                  formatDate = d3.time.format("%b"),
+                  parseDate = d3.time.format("%Y%m%d").parse,
+                  formatMonth = function (d) { return formatDate(parseDate('20130719')); };
+              //formatDate(parseDate('20130619'));
+              //var month = formatMonth(parseDate('20130619'));
+             
+
+
+              var months = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+              d3.text("./data/monthly/ny_month.csv", function (text) {
+                  var data = d3.csv.parseRows(text).map(function (row) {
+                      return row.map(function (value) {
+                          return +value;
+                      });
+                  });
+                  for (var i = 0; i < data.length; i++) {
+                      data[i][5] = d3.time.format("%Y%m%d").parse(data[i][5].toString());
+                      var m = data[i][5].getMonth();
+                      months[m]++;
+                  }
+
+
+
+              var margin = { top: 50, right: 10, bottom: 50, left: 10 },
+                  width = 300 - margin.left - margin.right,
+                  height = 300 - margin.top - margin.bottom;
+
+              var x = d3.scale.linear()
+                  .domain([0, 120])
+                  .range([0, width]);
+
+              // Generate a histogram using twenty uniformly-spaced bins.
+              var data = d3.layout.histogram()
+                  .bins(x.ticks(12))
+                  (values);
+
+
+              var y = d3.scale.linear()
+                  .domain([0, d3.max(data, function (d) { return d.y; })])
+                  .range([height, 0]);
+
+              var xAxis = d3.svg.axis()
+                  .scale(x)
+                  .orient("bottom")
+                  .tickFormat(formatMonth)
+                  .ticks(6);
+
+
+
+              var svg = d3.select("#ny-Graph").append("svg")
+                  .attr("width", width + margin.left + margin.right)
+                  .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+              var bar = svg.selectAll(".bar")
+                  .data(data)
+              .enter().append("g")
+                  .attr("class", "bar")
+                  .attr("transform", function (d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+
+              bar.append("rect")
+                  .attr("x", 1)
+                  .attr("width", x(data[0].dx) - 1)
+                  .attr("height", function (d) { return height - y(d.y); });
+
+              bar.append("text")
+                  .attr("dy", ".75em")
+                  .attr("y", -10)
+                  .attr("x", x(data[0].dx) / 2)
+                  .attr("text-anchor", "middle")
+                  .text(function (d) { return formatCount(d.y); });
+
+              svg.append("g")
+                  .attr("class", "x axis")
+                  .attr("transform", "translate(0," + height + ")")
+                  .call(xAxis);
+
+              });
+
+              console.log(months);
+              //for (var i = 0; i < data.length; i++) {
+
+              //}
+
+
+
+          }
+
+          function insertBarGraph() {
+              
+
+              var margin = { top: 10, right: 10, bottom: 20, left: 10 },
+                width = document.getElementById('ny-Graph').offsetWidth - margin.left - margin.right,
+                height = 150 - margin.top - margin.bottom;
+
+
+              var y = d3.scale.linear()
+                  .range([height, 0]);
+
+              var chart = d3.select(".bar")
+                  .attr("width", width)
+                  .attr("height", height);
+              var x = d3.scale.linear()
+                  .domain([0, 120])
+                  .range([0, width]);
+
+              var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .ticks(6);
+
+              ;
+
+
+
+              //d3.text("./data/monthly/ny_month.csv", function (text) {
+              //    var data = d3.csv.parseRows(text).map(function (row) {
+              //        return row.map(function (value) {
+              //            return +value;
+              //        });
+              //    });
+              //    for (var i = 0; i < data.length; i++) {
+              //        data[i][5] = d3.time.format("%Y%m%d").parse(data[i][5].toString());
+              //        var m = data[i][5].getMonth();
+              //        months[m]++;
+              //    }
+              var data = [2018,1285,1089,6588,6347,5154,2691,3031,987,671,573,5181];
+
+
+                  y.domain([0, d3.max(data, function (d) { return d; })]);
+
+                  var barWidth = width / data.length;
+
+                  var bar = chart.selectAll("g")
+                      .data(data)
+                    .enter().append("g")
+                      .attr("transform", function (d, i) { return "translate(" + i * barWidth + ",0)"; });
+
+                  bar.append("rect")
+                      .attr("y", function (d) { return y(d); })
+                      .attr("height", function (d) { return height - y(d); })
+                      .attr("width", barWidth - 1);
+
+                  bar.append("text")
+                      .attr("x", barWidth/2)
+                      .attr("y", function (d) { return y(d) + 3; })
+                      .attr("dy", ".75em")
+                      .text(function (d) { return d; });
+              //});
+
+
+              chart.append("g")
+                      .attr("class", "x axis")
+                      .attr("transform", "translate(0," + height + ")")
+                      .call(xAxis);
+
+              function type(d) {
+                  d = +d; // coerce to number
+                  return d;
+              }
+              }
+      </script>
+  </head>
+  <body>
+
+      <div id="ny-Map" class="map"></div>
+
+      <div id="ny-scale" class="detail">
+          <span>Color = $$$ per Bedroom</span>
+      </div>
+
+      <div id="ny-Street" class="streetView detail"></div>
+
+
+      <div id="ny-Graph" class="detail">
+          <svg class="bar"></svg>
+          <span>Number of Apartment Listings Each Month</span>
+      </div>
+
+      <div id="ny-Slider" class="detail">
+          <span id="slider3text">  January  </span>
+          <div id="slider3" class="d3-slider d3-slider-horizontal">
+          </div>
+      </div>
+
+
+</body>
+</html>
+
