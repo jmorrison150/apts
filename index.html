@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Off Campus Housing 2013-2014</title>
+    <link href="./css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <img id="layout_blk" width="1200" height="588" data-src="./images/layout/layout_blk.png" usemap="#layoutMap" src="./images/layout/layout_blk.png" alt="Apartment Data Visualization" style="opacity:1;" />
+    <map name="layoutMap">
+        <area id="sf_color" class="area" alt="SF" href="ny.html" shape="rect" coords="40,90,153,260" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'visible';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="sea_color" class="area" alt="SEA" href="ny.html" shape="rect" coords=" 260,87,361,260 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'visible';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="bos_color" class="area" alt="BOS" href="ny.html" shape="rect" coords="  434,74,552,260" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'visible';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="la_color" class="area" alt="LA" href="ny.html" shape="rect" coords=" 45,310,186,520 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'visible';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="dfw_color" class="area" alt="DFW" href="ny.html" shape="rect" coords=" 260,300,393,520 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'visible';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="ny_color" class="area" alt="NY" href="ny.html" shape="rect" coords=" 450,300,568,520 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'visible';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+
+
+
+
+
+        <area class="area" alt="SF" href="sf.html" shape="circle" coords="655,311,50" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'visible';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="SEA" href="sea.html" shape="circle" coords="649,189,50" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'visible';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="BOS" href="bos.html" shape="circle" coords="1156,256,50" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'visible';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="LA" href="la.html" shape="circle" coords="693,365,50" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'visible';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="DFW" href="dfw.html" shape="circle" coords="900,373,50" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'visible';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'hidden';" />
+        <area class="area" alt="NY" href="ny.html" shape="circle" coords="1118,278,50" onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'visible';
+    document.getElementById('intro_layout').style.visibility = 'hidden';
+    " />
+        <area id="intro_area" class="area" href="#intro" alt="What am I looking At?" shape="rect" coords=" 1005,484,1157,580 " onmouseover="
+    document.getElementById('sf_layout').style.visibility = 'hidden';
+    document.getElementById('sea_layout').style.visibility = 'hidden';
+    document.getElementById('bos_layout').style.visibility = 'hidden';
+    document.getElementById('la_layout').style.visibility = 'hidden';
+    document.getElementById('dfw_layout').style.visibility = 'hidden';
+    document.getElementById('ny_layout').style.visibility = 'hidden';
+    document.getElementById('intro_layout').style.visibility = 'visible';
+" onclick="
+    if (document.getElementById('intro').style.visibility == 'visible') {
+        document.getElementById('intro').style.visibility = 'hidden';
+        document.getElementById('sf_layout').style.visibility = 'hidden';
+        document.getElementById('sea_layout').style.visibility = 'hidden';
+        document.getElementById('bos_layout').style.visibility = 'hidden';
+        document.getElementById('la_layout').style.visibility = 'hidden';
+        document.getElementById('dfw_layout').style.visibility = 'hidden';
+        document.getElementById('ny_layout').style.visibility = 'hidden';
+        document.getElementById('intro_layout').style.visibility = 'hidden';
+              } else {
+        document.getElementById('intro').style.visibility = 'visible';
+        document.getElementById('sf_layout').style.visibility = 'visible';
+        document.getElementById('sea_layout').style.visibility = 'visible';
+        document.getElementById('bos_layout').style.visibility = 'visible';
+        document.getElementById('la_layout').style.visibility = 'visible';
+        document.getElementById('dfw_layout').style.visibility = 'visible';
+        document.getElementById('ny_layout').style.visibility = 'visible';
+        document.getElementById('intro_layout').style.visibility = 'visible';
+    }
+    " />
+
+    
+    
+    
+    
+    
+    
+    </map>
+
+    <img id="sf_layout" class="layout" width="1200" height="588"   usemap="#layoutMap" src="./images/layout/sf_layout.png" />
+    <img id="sea_layout" class="layout" width="1200" height="588"  usemap="#layoutMap" src="./images/layout/sea_layout.png" />
+    <img id="la_layout" class="layout" width="1200" height="588"   usemap="#layoutMap" src="./images/layout/la_layout.png" />
+    <img id="dfw_layout" class="layout" width="1200" height="588"  usemap="#layoutMap" src="./images/layout/dfw_layout.png" />
+    <img id="bos_layout" class="layout" width="1200" height="588"  usemap="#layoutMap" src="./images/layout/bos_layout.png" />
+    <img id="ny_layout" class="layout" width="1200" height="588" usemap="#layoutMap" src="./images/layout/ny_layout.png" />
+    <img id="intro_layout" class="layout" width="1200" height="588" usemap="#layoutMap" src="./images/layout/intro_layout.png" />
+   
+    
+    <div id="intro">
+        <p>
+            <a href="ny.html">One Dot = One Apartment<br /></a>
+            Color = Price Per Bedroom<br />
+        </p>
+        <p>
+            Once a month for a year, apartment listings were downloaded from <a href="http://www.padmapper.com/">padmapper</a> in selected cities. For each apartment, one dot was placed on the map in that location and colored based on price per bedroom. The result is a fine grained snapshot of residents in transition. It looks much like a population density mapping, but tells us more about where people want to be rather than where they are.
+            <br />
+            Apartments seem to be a good cross section of the population. They cover many socioeconomic conditions, and a variety of population densities. There are plenty of people who are financially capable of buying a house, but choose to rent an apartment. Why? What's  so special?
+            <br />
+            A vibrant neighborhoods are worth checking out. The data-set is inherently biased toward the urban condition with the goal of identifying the outlier. This map makes no assumptions about city or state boundaries, but ends up reinforcing the concept of the metropolitan center. Each city seems to have a hot spot for residential that is distinct from the financial district. In Boston we call it the Back Bay, in New York it's Midtown, Los Angeles has Santa Monica. Click the Cities on the left for an Interactive Map.
+            <br />
+        </p>
+        <p>
+            Padmapper aggregates apartment listings from Craigslist, PadLister, ApartmentSearch, Rent.com, Airbnb, ApartmentFinder and Realtor.com. The listings were downloaded with python based on code forked from <a href="https://github.com/jeffkaufman/apartment_prices/">Jeff Kaufman</a>
+            <br />
+            All listings were saved in a .csv file with longitude, latitude, bedroom, price, and date. These values were colored using Photoshop ExtendScript. 
+            <br />
+        </p>
+    </div>
+</body>
+
+</html>

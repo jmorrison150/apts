@@ -22,6 +22,7 @@
           function initialize() {
 
               insertMap();
+              addCircles();
               insertScale();
               insertSlider();
               insertBarGraph();
@@ -85,24 +86,10 @@
               //styles
               var styledMapType = new google.maps.StyledMapType(styles, { name: 'Light' });
               var styledMapType_blk = new google.maps.StyledMapType(styles_blk, { name: 'Dark' });
-              //var styledMapType_bos = new google.maps.StyledMapType(styles_blk, { name: 'Boston' });
-              //var styledMapType_dfw = new google.maps.StyledMapType(styles_blk, { name: 'Dallas' });
-              //var styledMapType_la = new google.maps.StyledMapType(styles_blk, { name: 'Los_Angeles' });
-              //var styledMapType_ny = new google.maps.StyledMapType(styles_blk, { name: 'New_York' });
-              //var styledMapType_sf = new google.maps.StyledMapType(styles_blk, { name: 'San_Francisco' });
-              //var styledMapType_sea = new google.maps.StyledMapType(styles_blk, { name: 'Seattle' });
-
-
 
               GoogleMap.mapTypes.set('Light', styledMapType);
               GoogleMap.mapTypes.set('Dark', styledMapType_blk);
 
-              //GoogleMap.mapTypes.set('Boston', styledMapType_bos);
-              //GoogleMap.mapTypes.set('Dallas', styledMapType_dfw);
-              //GoogleMap.mapTypes.set('Los_Angeles', styledMapType_la);
-              //GoogleMap.mapTypes.set('New_York', styledMapType_ny);
-              //GoogleMap.mapTypes.set('San_Francisco', styledMapType_sf);
-              //GoogleMap.mapTypes.set('Seattle', styledMapType_sea);
 
 
 
@@ -127,18 +114,6 @@
 
 
 
-              //click to view details
-              var panoramaOptions = { disableDefaultUI: true };
-              //setup streetview
-
-
-
-              //pano
-              Panorama = new google.maps.StreetViewPanorama(document.getElementById('ny-Street'), panoramaOptions);
-
-              // getPanoramaByLocation will return the nearest pano when the
-              // given radius is 50 meters or less.
-              var sv = new google.maps.StreetViewService();
 
 
               //make overlay
@@ -158,6 +133,15 @@
 
 
 
+
+              //click to view details
+              // getPanoramaByLocation will return the nearest pano when the
+              // given radius is 50 meters or less.
+              var panoramaOptions = { disableDefaultUI: true };
+              Panorama = new google.maps.StreetViewPanorama(document.getElementById('ny-Street'), panoramaOptions);
+              var sv = new google.maps.StreetViewService();
+
+              //clicks
               google.maps.event.addListener(nyOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
               google.maps.event.addListener(bostonOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
               google.maps.event.addListener(sfOverlay, 'click', function (event) { sv.getPanoramaByLocation(event.latLng, 50, ProcessSVData); });
@@ -167,6 +151,18 @@
 
 
           }
+
+          function addCircles() {
+              //var myCity = new google.maps.
+          }
+
+          var blue_Yellow_12 = ['#060436', '#27114a', '#471a5c', '#65266c', '#823579', '#9d4782', '#b85c87', '#cf7387', '#e38d81', '#f3a973', '#fdc659', '#ffe71c'];
+          var blue_Yellow_24 = ['#080444', '#250840', '#390b3c', '#471138', '#541736', '#611e33', '#6c2631', '#762e2f', '#82372c', '#8c3f2a', '#964928', '#a05226', '#a95c24', '#b26622', '#bb6f1f', '#c47a1d', '#cc831a', '#d48e17', '#dc9913', '#e3a50f', '#ebb00b', '#f2ba07', '#f9c603', '#ffd200'];
+          var blue_Magenta_Yellow_24 = ['#090645', '#22094c', '#350d52', '#451256', '#541a5a', '#62225e', '#6f2b60', '#7c3463', '#873f64', '#934965', '#9e5465', '#a85f65', '#b26b64', '#bb7763', '#c48461', '#cd905e', '#d59d5b', '#dcaa56', '#e3b751', '#e9c54a', '#f0d342', '#f5e136', '#faee26', '#fffc00'];
+          var lightblue_Darkred_24 = ['#8b89f2', '#9081e4', '#9478d7', '#9871ca', '#9a68be', '#9c60b0', '#9d57a3', '#9d4f97', '#9d458b', '#9c3d7f', '#963774', '#8f336c', '#872f62', '#7f2c59', '#782851', '#702548', '#682140', '#611e38', '#5a1a2f', '#521727', '#4b1420', '#441018', '#3d0d10', '#360a03'];
+          var blue_Orange_Yellow_24 = ['#08203b', '#25263b', '#362b3b', '#46313b', '#57373b', '#643e3b', '#71453b', '#7e4d3c', '#8b543c', '#975d3d', '#a3673d', '#ad703e', '#b87a3f', '#c38440', '#cb8f41', '#d59a42', '#dda644', '#e4b146', '#ebbe48', '#f0ca4b', '#f6d64d', '#fae351', '#fdf255', '#ffff59'];
+          var darkRed_Yellow_24 = ['#320e02', '#3f110a', '#4d1511', '#581b15', '#632119', '#6f291d', '#793121', '#833a25', '#8d4229', '#964c2d', '#a05531', '#a85f35', '#b16939', '#ba743e', '#c17e42', '#c98946', '#d1954a', '#d89f4e', '#dfab52', '#e6b656', '#edc15a', '#f3cd5f', '#f9d963', '#ffe567'];
+
 
           function insertScale() {
               var scale = document.createElement("img");
@@ -369,7 +365,10 @@
       </script>
   </head>
   <body>
-
+      <div class="back">
+          <a href="index.html">&lt;&lt; back</a>
+      </div>
+      
       <div id="ny-Map" class="map"></div>
 
       <div id="ny-scale" class="detail">
@@ -389,7 +388,6 @@
           <div id="slider3" class="d3-slider d3-slider-horizontal">
           </div>
       </div>
-
 
 </body>
 </html>
