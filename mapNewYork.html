@@ -1,0 +1,53 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Apartment Price Per Bedroom</title>
+      <link href="./css/d3.slider.css" rel="stylesheet"/>
+      <link href="./css/style.css" rel="stylesheet" />
+
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+      <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+      <script type="text/javascript" src="./js/d3.slider.js"></script>
+      <script type="text/javascript" src="./js/mapStyles.js"></script>
+      <script type="text/javascript" src="./js/mapStyles_blk.js"></script>
+      <script type="text/javascript" src="./js/map.js"></script>
+
+      <script>
+          mapCenter = ny;
+          mapZoom = 12;
+          google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
+  
+  </head>
+  <body>
+      <div class="back">
+          <a href="index.html">&lt;&lt; back</a>
+      </div>
+      
+      <div id="ny-Map" class="map"></div>
+
+
+
+      <div id="ny-Street" class="streetView detail"></div>
+
+
+      <div id="ny-Graph" class="detail">
+          <svg class="bar"></svg>
+          <span>Number of Apartment Listings Each Month</span><br />
+          <span id="slider3text">  January  </span><br />
+          <div id="slider3" class="d3-slider d3-slider-horizontal"></div>
+      </div>
+
+      <div id="ny-Slider" class="detail">
+          
+      </div>
+      <div class="detail">
+          <span>Color = $$$ per Bedroom</span><br />
+      <img src="./images/scale.png" alt="Blue = $200/month Yellow = $3000/month" /></div>
+
+</body>
+</html>
+

@@ -6,6 +6,7 @@
         { "lightness": -87 },
         { "gamma": 0.8 }]
 },
+{ "stylers": [ { "lightness": 0 } ] },
     {
         "featureType": "landscape",
         "stylers": [
@@ -23,6 +24,7 @@
         "featureType": "administrative",
         "stylers": [{ "visibility": "simplified" }]
     },
+
     {
         "featureType": "road", "elementType": "geometry",
         "stylers": [
@@ -43,6 +45,10 @@
         "featureType": "administrative", "elementType": "labels.icon",
         "stylers": [
             { "visibility": "off" }]
+    },
+    {
+        "featureType": "transit.line",
+        "stylers": [{ "lightness": -75 }]
     },
     {
         "featureType": "transit.station.airport",

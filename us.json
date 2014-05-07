@@ -1,0 +1,15 @@
+﻿{
+	"cities":
+	[
+		{		
+			"CITY":"US",
+			"MIN_LAT":24.926295,
+			"MAX_LAT":48.926295,
+			"MIN_LON":-126.137697,
+			"MAX_LON":-66.137697,
+			"maxX":589,
+			"maxY":300,
+			"GOOGLE_MAPS":"http://maps.googleapis.com/maps/api/staticmap?size=640x640&maptype=satellite&markers=24.926295,-66.137697|48.926295,-66.137697|24.926295,-126.137697|48.926295,-126.137697&sensor=false"
+		}
+	]		
+}

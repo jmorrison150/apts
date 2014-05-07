@@ -1,40 +1,57 @@
-//John Morrison 2014
+﻿//John Morrison 2014
 //javascript port based on code by Jeff Kaufman 
 //Boston Apartment Prices 2011
-//http://www.jefftk.com/apartment_prices/index#2014-03-18&room
-
+//http://www.jefftk.com/apartment_prices/index
 
 #target photoshop;
 var data =
 #include "./cities.json";
+var colors = 
+#include "./colors.js";
 
 //adjust variables
 var stepSize = 2;
 var everyApt = 1;
 var midpoint = 1300;
-var rectSize = 3;
+var rectSize = 6;
+var enlarge = 16;
+var opacity = 50.0;
+var lowRes = false;
+var nameAppend = "_0000";
+var priceMin = 600;
+var priceMax = 4000;
+var clipMin = 0;
+var clipMax = 6000;
+
 //change the dateString to match the files you want to process
 //var dateString = 0;
-var maxLat, maxLon, minLat, minLon, maxX, maxY, deltaLat, deltaLon, fileData, arrayXY, offset,file ;
+var maxLat, maxLon, minLat, minLon, maxX, maxY, deltaLat, deltaLon, fileData, arrayXY, offset,file ,colorScale,fgColor,valueOpacity ;
+colorScale = blue_green_orange_yellow_52; 
+
+//~ nameAppend = "_600-4000";
+//~ priceMin = 600;
+//~ priceMax = 4000;
 
 
-run(20140410);
-run(20140411);
-run(20140412);
-run(20140413);
-run(20140414);
-run(20140415);
-run(20140416);
-run(20140418);
-run(20140419);
-run(20140420);
-run(20140421);
-run(20140422);
-run(20140423);
-run(20140424);
-run(20140425);
-run(20140426);
-run(20140427);
+//~ for(var i=3000;i<6300;i+=1000){
+//~ clipMin = i;
+//~ clipMax = i+1000;
+//~ nameAppend = "_" + clipMin + "-" + clipMax;
+//~ $.writeln(nameAppend);
+//~ run(20140502);
+//~ }
+
+
+
+
+
+for(var i=600;i>200;i-=200){
+clipMin = i;
+clipMax = i+200;
+nameAppend = "_" + clipMin + "-" + clipMax;
+$.writeln(nameAppend);
+run(20140502);
+}
 
 
 
@@ -64,6 +81,88 @@ function readCSV ( _fileName ){
     {  
         var _currentLine = _fileObject.readln () ;       // Read one line
         _returnArray.push(_currentLine.split(',')) ; 
+
+//~ if(lowRes){
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~                 _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~                 _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~                         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+//~         _fileObject.readln () ;
+
+//~ }
+
     }
     _fileObject.close();                                // close the file
     return _returnArray;
@@ -227,7 +326,7 @@ function closeImage(){
 
     var outputFolder = Folder((new File($.fileName)).parent);
     $.writeln(outputFolder +'/'+ file + ".png");
-    aptDoc.saveAs(new File(outputFolder +'/images/'+ file + ".png"), pngSaveOptions);
+    aptDoc.saveAs(new File(outputFolder +'/images/'+ file + nameAppend + ".png"), pngSaveOptions);
     app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
 }
 
@@ -265,82 +364,60 @@ function pasteLayer(_source, _destination){
     }
     srcDoc = null;
 }
-function fill( value ){
-    var color = map(fileData[value][6],400,2000,0,255);
-    if (color<0 || color>255)
-    {
-        color = null;
-    }     
-    app.foregroundColor.rgb.red   = color;
-    app.foregroundColor.rgb.green = color;
-    app.foregroundColor.rgb.blue  = color; 
-}
 
 
 function ramp( value ){ 
 
-    var _limit = [ midpoint*0.2,midpoint*0.8,midpoint,midpoint*1.2,midpoint*1.8 ];
-    var red, green, blue;
-    
+ //   var _limit = [ midpoint*0.2,midpoint*0.8,midpoint,midpoint*1.2,midpoint*1.8 ];
+ 
 //_limit[0]    200      260
 //_limit[1]    800      1040
 //_limit[2]    1000     1300
 //_limit[3]    1200     1560
 //_limit[4]    1800     2340
   
-    color = {};
-    color.red = map(value,_limit[2],_limit[3],0,255);
-    if (color.red>255) {color.red = 255;}
-    if (color.red<0) {color.red = 0;}
+  
+  //variable opacity
+  //valueOpacity = map (value, 700, 1900, 30, 100);
+  //if(valueOpacity<30){valueOpacity=30;}else if(valueOpacity>100){valueOpacity=100}
+  
+  //700,1900
+  var colorIndex = Math.floor(map(value,priceMin,priceMax,0,colorScale.length-1));
+  if(colorIndex<0){colorIndex = 0; } else if(colorIndex>colorScale.length-1){colorIndex=colorScale.length-1;}
+  
+fgColor = new SolidColor;
+fgColor.rgb.hexValue = colorScale[colorIndex];
+  
+    //app.foregroundColor = fgColor;
 
 
-    if(_limit[1]<value && value<_limit[3])
-    {
-        color.green = 255;
-    } else if (value>=_limit[3])
-    {
-        color.green = map(value,_limit[4],_limit[3],0,255);
-    } else if (value<=_limit[1]) 
-    {
-        color.green = map(value, _limit[0], _limit[1],0,255);
-    }
-    if (color.green>255) {color.green = 255;}
-    if (color.green<0) {color.green = 0;}
 
-    color.blue = map(value,_limit[2],_limit[1],0,255);
-    //$.writeln(color.blue);
-    if (color.blue>255) {color.blue = 255;}
-    if (color.blue<0) {color.blue = 0;}
-    
-    
-    app.foregroundColor.rgb.red   = color.red;
-    app.foregroundColor.rgb.green = color.green;
-    app.foregroundColor.rgb.blue  = color.blue;
-
-    //return color;
 }
 
 
 
 
 
-
-
 function pixel(_x,_y){
+    //variable rectangle size
+//var valueRect = Math.floor(rectSize*(1.4-(valueOpacity/100.0)));
+var valueRect = rectSize;
+if(_x -Math.floor(valueRect/2)<0 || _x + Math.ceil(valueRect)>maxX || _y -Math.floor(valueRect/2)<0 || _y + Math.ceil(valueRect)>maxY){return;}
 
-    if(_x<rectSize||_y<rectSize||_x+rectSize>maxX||_y+rectSize>maxY)
-    {
-        return;
-    } 
 
         var _rectSelect =Array
-                      ( Array( _x, _y ),
-                        Array( _x + rectSize, _y),
-                        Array( _x + rectSize, _y + rectSize),
-                        Array( _x , _y + rectSize )
+                      ( Array( _x -Math.floor(valueRect/2), _y -Math.floor(valueRect/2)),
+                        Array( _x + Math.ceil(valueRect), _y -Math.floor(valueRect/2)),
+                        Array( _x + Math.ceil(valueRect), _y + Math.ceil(valueRect)),
+                        Array( _x-Math.floor(valueRect/2) , _y + Math.ceil(valueRect) )
                       );
         aptDoc.selection.select(_rectSelect);
-        aptDoc.selection.fill(app.foregroundColor);
+    //variable opacity        
+    //aptDoc.selection.fill (fgColor, ColorBlendMode.NORMAL, valueOpacity, false)
+    //aptDoc.selection.feather (Math.floor(1));
+    aptDoc.selection.fill (fgColor, ColorBlendMode.NORMAL, opacity, false)
+
+    //aptDoc.selection.fill(fgColor);
         aptDoc.selection.deselect();
     
 }
@@ -364,10 +441,16 @@ function rectangle(x,y){
 function colorPixels(){
     for (var i=0;i<arrayXY.length;i+=everyApt)
     {
-            if(i%100==0){$.writeln("i="+i);}
+          
         //$.write("i");
+            //clipping for layered .psd
+        if(fileData[i][6]>=clipMin){
+        if(fileData[i][6]>clipMax){return;}
+        
+          if(i%100==0){$.writeln("i="+i);}
         ramp(fileData[i][6]);
         pixel(arrayXY[i][0],arrayXY[i][1]+maxY);
+        }
     }
 /*
     for (var y=stepSize/2; y<maxY; y+=stepSize) 
@@ -407,9 +490,8 @@ for (var i = 0; i <folderList.length ; ++i){
 */
        
         
-    for (var i=0;i<data.cities.length;++i){
-
-
+//    for (var i=data.cities.length-1;i>=0;i--){
+    for(var i=0;i<data.cities.length;++i){
 
         var cityName = data.cities[i].CITY;
         file = ('apt-'+ cityName + '-' + dateString );    
@@ -430,7 +512,6 @@ for (var i = 0; i <folderList.length ; ++i){
 
 
      
-
         fileData = readCSV ( 'data/' + file +'.csv' );
         calculatePricePerBedroom ();
         offset = (stepSize/2);
@@ -439,13 +520,12 @@ for (var i = 0; i <folderList.length ; ++i){
         maxLat=data.cities[i].MAX_LAT;
         minLon=data.cities[i].MIN_LON;
         maxLon=data.cities[i].MAX_LON;
-        maxX = data.cities[i].maxX;
-        maxY = data.cities[i].maxY;
+        maxX = data.cities[i].maxX*enlarge;
+        maxY = data.cities[i].maxY*enlarge;
         deltaLat = maxLat-minLat;
         deltaLon = maxLon-minLon;
         arrayXY = [];
         populateXY ();
-
 
 
         newImage();

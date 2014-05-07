@@ -1,16 +1,7 @@
 ﻿{
 	"cities":
 	[
-		{		
-			"CITY":"BOS",
-			"MIN_LAT":42.255594,
-			"MAX_LAT":42.4351936,
-			"MIN_LON":-71.1828231,
-			"MAX_LON":-70.9758,
-			"maxX":500,
-			"maxY":588,
-			"GOOGLE_MAPS":"http://maps.googleapis.com/maps/api/staticmap?size=640x640&maptype=satellite&markers=42.255594,-70.9758|42.4351936,-70.9758|42.255594,-71.1828231|42.4351936,-71.1828231&sensor=false"
-		},
+
 		{
 			"CITY":"NY",
 			"MIN_LAT":40.616333,
@@ -52,6 +43,16 @@
 			"GOOGLE_MAPS":"http://maps.googleapis.com/maps/api/staticmap?size=640x640&maptype=satellite&markers=37.249862,-122.796936|37.249862,-121.764221|38.083915,-122.796936|38.083915,-121.764221&sensor=false"
 
 		},
+				{		
+			"CITY":"BOS",
+			"MIN_LAT":42.255594,
+			"MAX_LAT":42.4351936,
+			"MIN_LON":-71.1828231,
+			"MAX_LON":-70.9758,
+			"maxX":500,
+			"maxY":588,
+			"GOOGLE_MAPS":"http://maps.googleapis.com/maps/api/staticmap?size=640x640&maptype=satellite&markers=42.255594,-70.9758|42.4351936,-70.9758|42.255594,-71.1828231|42.4351936,-71.1828231&sensor=false"
+		},
 		{
 			"CITY":"SEA",
 			"MIN_LAT":47.242477,
@@ -61,16 +62,6 @@
 			"maxX":500,
 			"maxY":761,
 			"GOOGLE_MAPS":"http://maps.googleapis.com/maps/api/staticmap?size=640x640&maptype=satellite&markers=47.2424770,-122.4604800|47.2424770,-121.8534850|47.8689810,-122.4604800|47.8689810,-121.8534850&sensor=false"
-		},
-		{
-			"CITY":"AUSTIN",
-			"MIN_LAT":30.124422,
-			"MAX_LAT":30.503788,
-			"MIN_LON":-97.90329,
-			"MAX_LON":-97.554474,
-			"maxX":500,
-			"maxY":630,
-			"GOOGLE_MAPS":"http://maps.googleapis.com/maps/api/staticmap?size=640x640&maptype=satellite&markers=30.124422,-97.90329|30.124422,-97.554474|30.503788,-97.90329|30.503788,-97.554474&sensor=false"
 		}
 	]		
 }

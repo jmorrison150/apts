@@ -34,7 +34,7 @@ body {
     width: 28%;
     min-width: 300px;
     margin: 0px;
-    padding: 0px;
+    padding-top: 20px;
     float: right;
     z-index: 3;
     clear: both;
